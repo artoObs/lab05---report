@@ -22,14 +22,14 @@ jobs:
       - name: Run tests
         run: cd build && ctest --output-on-failure
 
-      - name: Generate coverage XML
+      - name: Generate coverage report (cobertura)
         run: |
           cd build
-          gcovr --gcov-executable gcov --root .. --xml-pretty --output coverage.xml
+          gcovr --gcov-executable gcov --root .. --cobertura --output coverage.xml
 
       - name: Upload to Coveralls
         uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           file: build/coverage.xml
-          format: gcovr
+          format: cobertura
