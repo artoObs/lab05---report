@@ -1,0 +1,68 @@
+Start testing: May 14 04:54 UTC
+----------------------------------------------------------
+1/1 Testing: BankingTests
+1/1 Test: BankingTests
+Command: "/home/vboxuser/artoObs/workspace/projects/lab05-report/build/banking_tests"
+Directory: /home/vboxuser/artoObs/workspace/projects/lab05-report/build
+"BankingTests" start time: May 14 04:54 UTC
+Output:
+----------------------------------------------------------
+Running main() from gmock_main.cc
+[==========] Running 9 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 1 test from Account
+[ RUN      ] Account.Basics
+[       OK ] Account.Basics (0 ms)
+[----------] 1 test from Account (0 ms total)
+
+[----------] 8 tests from Transaction
+[ RUN      ] Transaction.Fee
+[       OK ] Transaction.Fee (0 ms)
+[ RUN      ] Transaction.Make_ThrowsOnSameId
+[       OK ] Transaction.Make_ThrowsOnSameId (0 ms)
+[ RUN      ] Transaction.Make_ThrowsOnNegativeSum
+[       OK ] Transaction.Make_ThrowsOnNegativeSum (0 ms)
+[ RUN      ] Transaction.Make_ThrowsOnTooSmallSum
+[       OK ] Transaction.Make_ThrowsOnTooSmallSum (0 ms)
+[ RUN      ] Transaction.Make_ReturnsFalseIfFeeTooHigh
+[       OK ] Transaction.Make_ReturnsFalseIfFeeTooHigh (0 ms)
+[ RUN      ] Transaction.Make_Success
+1 send to 2 $200
+Balance 1 is 
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: GetBalance()
+          Returns: 0
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/main/docs/gmock_cook_book.md#knowing-when-to-expect-useoncall for details.
+0
+Balance 2 is 700
+[       OK ] Transaction.Make_Success (0 ms)
+[ RUN      ] Transaction.Make_FailAndRollback
+1 send to 2 $100
+Balance 1 is 
+GMOCK WARNING:
+Uninteresting mock function call - returning default value.
+    Function call: GetBalance()
+          Returns: 0
+NOTE: You can safely ignore the above warning unless this call should not happen.  Do not suppress it by blindly adding an EXPECT_CALL() if you don't mean to enforce the call.  See https://github.com/google/googletest/blob/main/docs/gmock_cook_book.md#knowing-when-to-expect-useoncall for details.
+0
+Balance 2 is 100
+[       OK ] Transaction.Make_FailAndRollback (0 ms)
+[ RUN      ] Transaction.Make_ExceptionRollback
+[       OK ] Transaction.Make_ExceptionRollback (0 ms)
+[----------] 8 tests from Transaction (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 9 tests from 2 test suites ran. (0 ms total)
+[  PASSED  ] 9 tests.
+libgcov profiling error:/home/vboxuser/artoObs/workspace/projects/lab05-report/build/CMakeFiles/banking_tests.dir/tests/test_transaction.cpp.gcda:overwriting an existing profile data with a different checksum
+libgcov profiling error:/home/vboxuser/artoObs/workspace/projects/lab05-report/build/CMakeFiles/banking_tests.dir/tests/test_account.cpp.gcda:overwriting an existing profile data with a different checksum
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"BankingTests" end time: May 14 04:54 UTC
+"BankingTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 14 04:54 UTC
