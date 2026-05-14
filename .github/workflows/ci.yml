@@ -7,17 +7,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Configure with coverage
-        run: cmake -B build -DENABLE_COVERAGE=ON
+      
+      - name: Install lcov
+        run: sudo apt update && sudo apt install -y lcov
+      
+      - name: Configure CMake with coverage
+        run: |
+          rm -rf build
+          cmake -B build -DENABLE_COVERAGE=ON
+      
       - name: Build
         run: cmake --build build
+      
       - name: Run tests
-        run: cd build && ctest
-      - name: Generate coverage info (lcov)
+        run: cd build && ctest --output-on-failure
+      
+      - name: Generate coverage info
         run: |
           cd build
           lcov --capture --directory . --output-file coverage.info --no-external
           lcov --remove coverage.info '/usr/*' '*/tests/*' '*/googletest-src/*' -o coverage.info
+      
       - name: Upload to Coveralls
         uses: coverallsapp/github-action@v2
         with:
