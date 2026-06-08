@@ -7,10 +7,10 @@ include(FetchContent)
 FetchContent_Declare(googletest URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip)
 FetchContent_MakeAvailable(googletest)
 
-add_library(banking STATIC src/Account.cpp src/Transaction.cpp)
+add_library(banking STATIC banking/src/Account.cpp banking/src/Transaction.cpp)
 target_include_directories(banking PUBLIC src)
 
-add_executable(banking_tests tests/test_account.cpp tests/test_transaction.cpp)
+add_executable(banking_tests banking/tests/test_account.cpp banking/tests/test_transaction.cpp)
 
 target_link_libraries(banking_tests PRIVATE banking gtest gmock_main)
 
