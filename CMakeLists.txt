@@ -7,10 +7,20 @@ include(FetchContent)
 FetchContent_Declare(googletest URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip)
 FetchContent_MakeAvailable(googletest)
 
-add_library(banking STATIC banking/src/Account.cpp banking/src/Transaction.cpp)
-target_include_directories(banking PUBLIC src)
+add_library(banking STATIC 
+    banking/src/Account.cpp 
+    banking/src/Transaction.cpp
+)
+target_include_directories(banking PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/banking/src)
 
-add_executable(banking_tests banking/tests/test_account.cpp banking/tests/test_transaction.cpp)
+add_executable(banking_tests 
+    banking/tests/test_account.cpp 
+    banking/tests/test_transaction.cpp
+)
+target_include_directories(banking_tests PRIVATE 
+    ${CMAKE_CURRENT_SOURCE_DIR}/banking/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/banking/tests
+)
 
 target_link_libraries(banking_tests PRIVATE banking gtest gmock_main)
 
@@ -24,4 +34,3 @@ if(ENABLE_COVERAGE)
     target_compile_options(banking_tests PRIVATE -O0 -g --coverage)
     target_link_libraries(banking_tests PRIVATE --coverage)
 endif()
-
